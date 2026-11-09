@@ -1,6 +1,6 @@
 # 履修打（Risyu DA）Web版
 
-Processing（Javaモード）のゲーム `EP_RisyuDA.pde` を **p5.js** に移植したWeb版です。
+Processing（Javaモード）のゲーム `EP_RisyuDA.pde` を **p5.js** に移植したWeb版。もとのファイルをChatGPTに投げて移植してもらったものに修正を加えた。以下の内容もChatGPTによるもの。
 
 ## ファイル
 
@@ -8,43 +8,23 @@ Processing（Javaモード）のゲーム `EP_RisyuDA.pde` を **p5.js** に移�
 - `sketch.js` — Processingのゲーム本体を移植したコード
 - `style.css` — レイアウトと画面サイズの調整
 
-## 動かし方
-
-1. このフォルダーの `index.html` をブラウザで開きます。
-2. 画面の **Start** をクリックします。
-3. 3→2→1→Start! のカウントダウン後、科目名をタイピングします。
-
-> p5.js本体はCDNから取得するため、初回の読み込みにはインターネット接続が必要です。`index.html` を直接開いて表示されない場合は、VS CodeのLive Serverなどのローカルサーバーで開いてください。
-
 ## 操作方法
 
 - **キーボード入力** — 画面に表示された英語の科目名を入力
 - **Enter** — 入力内容を判定
 - **Backspace** — 入力中の文字をすべて消去（元のProcessing版と同じ仕様）
-- **もう一度遊ぶ** — 最初の画面からリスタート
 
 大文字・小文字・スペースも一致させる必要があります。画面の比率は自動調整されますが、キーボードが使えるPCでのプレイを想定しています。
-
-## GitHub Pagesで無料公開する
-
-1. GitHubで新規リポジトリを作成します（例: `risyu-da`）。
-2. `index.html` / `sketch.js` / `style.css` をリポジトリの **ルート** にアップロードします。`README.md` もアップロード可能です。
-3. リポジトリの **Settings → Pages** を開きます。
-4. **Build and deployment** で `Deploy from a branch` を選び、ブランチは `main`、フォルダは `/(root)` を指定して **Save** します。
-5. 公開が完了すると、通常は `https://ユーザー名.github.io/risyu-da/` のようなURLでアクセスできます。
-
-※ 公開範囲やGitHub Pagesの利用条件は、アカウントとリポジトリの設定によって異なる場合があります。
 
 ## 元のProcessing版からの変更点
 
 - `void` / 型付き変数 / Javaの文字列比較 `.equals()` などをJavaScript向けに変換しました。
-- `size()` を `createCanvas()` に変更し、CSSでブラウザ幅に合わせて表示サイズを調整しました（内部ゲーム座標は **1800×860** のまま）。
+- `size()` を `createCanvas()` に変更し、CSSでブラウザ幅に合わせて表示サイズを調整しました。
 - `frameRate(1)` によるカウントダウンを、時間計測による処理に変更しました。
 - Java/Processingの `delay(500)`、`delay(1000)`、`delay(1500)` の代わりに `millis()` を使った非同期的な表示に変更しました。
 - `keyPressed()` で **Enter / Backspace / Space**、`keyTyped()` で通常の文字入力を処理します。
 - 最後の科目が画面外へ出た場合の配列範囲外参照を防止しました。
 - 元コードにあった未使用の配列・変数は省きました。
-- 「もう一度遊ぶ」ボタンを追加しました。
 
 ## 得点計算
 
