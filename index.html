@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ProcessingからWebに移植した履修タイピングゲーム『履修打（Risyu DA）』">
+  <title>履修打（Risyu DA）</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js"></script>
+  <script defer src="sketch.js"></script>
+</head>
+<body>
+  <main>
+    <p><b>履修打（りしゅだ）</b></p>
+    <div class="controls">
+      <p><strong>操作方法：</strong>キーボードで科目名を入力 ／ <kbd>Enter</kbd> で決定 ／ <kbd>Backspace</kbd> で入力を全消去 ／ リプレイするにはリロードしてください</p>
+    </div>
+    <div id="game-container" aria-label="履修打のゲーム画面"></div>
+    <noscript>このゲームを動かすにはJavaScriptを有効にしてください。</noscript>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('restart-button').addEventListener('click', () => {
+        if (typeof restartGame === 'function') restartGame();
+      });
+    });
+  </script>
+</body>
+</html>
